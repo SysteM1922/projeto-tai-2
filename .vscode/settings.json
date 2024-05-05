@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.jsx": "javascriptreact",
+        "*.7": "plaintext",
+        "*.py": "python",
+        "iostream": "cpp"
+    }
+}

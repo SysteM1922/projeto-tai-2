@@ -1,0 +1,1 @@
+void progressBar(int progress, int total);

@@ -22,6 +22,9 @@ with open('AI_Human.csv', 'r') as file:
 if os.path.exists('dataset'):
     shutil.rmtree('dataset')
 os.makedirs('dataset')
+os.makedirs('dataset/train')
+os.makedirs('dataset/test')
+
 
 test_size = 0.1
 
@@ -55,15 +58,19 @@ else:
 
     test_human = random.sample(human, int(len(train_human)*test_size))
 
-with open('dataset/train_ai.txt', 'w') as file:
-    file.writelines(train_ai)
+with open('dataset/train/train_ai.txt', 'w') as file:
+    for line in train_ai:
+        file.write(line + '\0')
 
-with open('dataset/train_human.txt', 'w') as file:
-    file.writelines(train_human)
+with open('dataset/train/train_human.txt', 'w') as file:
+    for line in train_human:
+        file.write(line + '\0')
 
-with open('dataset/test_ai.txt', 'w') as file:
-    file.writelines(test_ai)
+for idx, text in enumerate(test_ai):
+    with open('dataset/test/test_ai_{}.txt'.format(idx), 'w') as file:
+        file.write(text)
 
-with open('dataset/test_human.txt', 'w') as file:
-    file.writelines(test_human)
+for idx, text in enumerate(test_human):
+    with open('dataset/test/test_human_{}.txt'.format(idx), 'w') as file:
+        file.write(text)
 
