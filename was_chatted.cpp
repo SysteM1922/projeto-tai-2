@@ -6,13 +6,28 @@
 
 #include <unordered_map>
 
-#include "progress_bar.h"
-
 #define BUFFER_SIZE 20 * 1024 * 1024
 
 using namespace std;
 
-void read_for_table(FILE *file, unordered_map<string, int> &table, size_t sequence_size)
+void progressBar(int progress, int total) {
+    float percent = static_cast<float>(progress) / total * 100;
+
+    int barWidth = 50;
+    int numChars = static_cast<int>(percent / 100 * barWidth);
+
+    cout << "[";
+    for (int i = 0; i < barWidth; ++i) {
+        if (i < numChars)
+            cout << "=";
+        else
+            cout << " ";
+    }
+    cout << "] " << static_cast<int>(percent) << "%\r";
+    cout.flush();
+}
+
+void read_for_table(FILE *file, unordered_map<string, int> &table, size_t sequence_size, string label)
 {
     size_t buffer_size;
     fseek(file, 0, SEEK_END);
@@ -38,7 +53,7 @@ void read_for_table(FILE *file, unordered_map<string, int> &table, size_t sequen
     string sequence(sequence_size, ' ');
 
     int percent = 0;
-    cout << "Processing file" << endl;
+    cout << "Processing file " << label << "..." << endl;
     progressBar(percent, 100);
 
     while (fread(&buffer[0], sizeof(char), buffer_size, file) == buffer_size)
@@ -144,8 +159,8 @@ int main(int argc, char *argv[])
     unordered_map<string, int> human_compression_table;
     unordered_map<string, int> chatted_compression_table;
 
-    read_for_table(humman_collection, human_compression_table, sequence_size);
-    read_for_table(chatted_collection, chatted_compression_table, sequence_size);
+    read_for_table(humman_collection, human_compression_table, sequence_size, "human collection");
+    read_for_table(chatted_collection, chatted_compression_table, sequence_size, "chatted collection");
 
     // print tables memory usage
     cout << "Human compression table memory usage: " << human_compression_table.size() * sizeof(pair<string, int>) / 1024 << " KB" << endl;
