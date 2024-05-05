@@ -15,9 +15,9 @@ with open('AI_Human.csv', 'r') as file:
     for row in reader:
         c+=1
         if row[1] == "1.0":
-            ai.append(row[0])
+            ai.append(row[0].replace('\n\n', '\n'))
         else:
-            human.append(row[0])
+            human.append(row[0].replace('\n\n', '\n'))
 
 if os.path.exists('dataset'):
     shutil.rmtree('dataset')
