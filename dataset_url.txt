@@ -1,1 +1,1 @@
-https://www.kaggle.com/datasets/mahdimaktabdar/chatgpt-classification-dataset
+https://www.kaggle.com/datasets/shanegerami/ai-vs-human-text/data

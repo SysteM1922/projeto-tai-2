@@ -33,5 +33,4 @@
 
 # Dataset Files
 AI_Human.csv
-test/
-train/
+dataset/
