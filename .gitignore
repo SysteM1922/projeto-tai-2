@@ -34,3 +34,7 @@
 # Dataset Files
 AI_Human.csv
 dataset/
+
+# Table files
+human_compression_table.bin
+chatted_compression_table.bin
