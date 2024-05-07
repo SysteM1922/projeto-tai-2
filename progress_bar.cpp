@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "progress_bar.h"
+#include "progress_bar.hpp"
 
 using namespace std;
 

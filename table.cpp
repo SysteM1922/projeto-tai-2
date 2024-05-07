@@ -6,8 +6,11 @@
 #include <functional>
 #include <cmath>
 
-#include "table.h"
-#include "progress_bar.h"
+#include <sparsehash/sparse_hash_map>
+#include "tsl/hopscotch_map.h"
+
+#include "table.hpp"
+#include "progress_bar.hpp"
 
 #define BUFFER_SIZE 20 * 1024 * 1024
 #define ALPHABET_SIZE 1 << sizeof(char) * 8
@@ -28,7 +31,7 @@ void Table::addSequence(string sequence, char nextChar)
 
 int Table::memorySize()
 {
-    return sizeof(unordered_map<size_t, unordered_map<char, uint>>) + table.size() * (sizeof(size_t) + sizeof(unordered_map<char, uint>) + sizeof(char) + sizeof(uint));
+    return sizeof(tsl::hopscotch_map<size_t, tsl::hopscotch_map<char, uint>>) + table.size() * (sizeof(size_t) + sizeof(tsl::hopscotch_map<char, uint>) + sizeof(char) + sizeof(uint));
 };
 
 void Table::calcProbability(string sequence, char nextChar, double &prob)

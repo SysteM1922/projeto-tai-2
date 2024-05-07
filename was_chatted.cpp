@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <cmath>
 
-#include "table.h"
+#include "table.hpp"
 
 using namespace std;
 

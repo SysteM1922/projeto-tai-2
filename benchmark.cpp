@@ -5,7 +5,7 @@
 #include <math.h>
 #include <filesystem>
 
-#include "table.h"
+#include "table.hpp"
 
 using namespace std;
 namespace fs = std::filesystem;
