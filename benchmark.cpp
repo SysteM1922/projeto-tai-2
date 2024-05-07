@@ -9,6 +9,7 @@
 
 using namespace std;
 namespace fs = std::filesystem;
+using namespace std::chrono;
 
 void read_file_to_memory(FILE *file, char *&targetData, int &fileSize)
 {
@@ -137,6 +138,8 @@ int main(int argc, char *argv[])
         totalFiles++;
     }
 
+    auto start = high_resolution_clock::now();
+
     cout << "Precision: 0% ";
     progress_bar(0, totalFiles);
     for (const auto &entry : fs::directory_iterator(dir))
@@ -177,12 +180,14 @@ int main(int argc, char *argv[])
         cout << "Precision: " << (double)hits / (hits + misses) * 100 << "% ";
         progress_bar(hits + misses, totalFiles);
     }
+    auto stop = high_resolution_clock::now();
     cout << endl;
 
     human_compression_table.clear();
     chatted_compression_table.clear();
 
     cout << "Precision: " << (double)hits / (hits + misses) * 100 << "%" << endl;
+    cout << "Time taken: " << duration_cast<seconds>(stop - start).count() << " seconds" << endl;
 
     return 0;
 }

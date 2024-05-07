@@ -4,7 +4,7 @@
 #include <chrono>
 #include <fstream>
 #include <functional>
-#include <math.h>
+#include <cmath>
 
 #include "table.h"
 #include "progress_bar.h"

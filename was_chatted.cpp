@@ -2,7 +2,7 @@
 #include <string>
 #include <getopt.h>
 #include <stdio.h>
-#include <math.h>
+#include <cmath>
 
 #include "table.h"
 
