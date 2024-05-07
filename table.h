@@ -14,15 +14,11 @@ struct Table
 {
     Table(int newAlpha);
     int alpha;
-    int total = 0;
-    int alphabetSize = 0;
     unordered_map<size_t, unordered_map<char, uint>> table;
-    unordered_set<char> alphabet;
 
     void addSequence(string sequence, char nextChar);
     int memorySize();
-    void calcProbability(string sequence, char nextChar, int &sum, double &prob);
-    void addToAlphabet(char c);
+    void calcProbability(string sequence, char nextChar, double &prob);
     void clear();
 };
 void progress_bar(int progress, int total);

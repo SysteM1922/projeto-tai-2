@@ -30,8 +30,6 @@ void read_file_to_memory(FILE *file, char *&targetData, int &fileSize)
 
 double compress_from_table(Table table, size_t sequence_size, char *data, int fileSize)
 {
-    double tableSize = table.total;
-    int sum = 0;
     double total = 0;
     double prob = 0;
 
@@ -44,8 +42,8 @@ double compress_from_table(Table table, size_t sequence_size, char *data, int fi
             sequence += data[i];
             continue;
         }
-        table.calcProbability(sequence, data[i], sum, prob);
-        total -= (sum/tableSize)*prob*log2(prob);
+        table.calcProbability(sequence, data[i], prob);
+        total -= log2(prob);
         for (size_t j = 0; j < sequence_size - 1; j++)
         {
             sequence[j] = sequence[j + 1];

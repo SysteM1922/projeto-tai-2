@@ -24,7 +24,7 @@ if os.path.exists('dataset'):
 os.makedirs('dataset')
 os.makedirs('dataset/train')
 os.makedirs('dataset/test')
-
+os.makedirs('dataset/test_tiny')
 
 test_size = 0.1
 
@@ -68,9 +68,15 @@ with open('dataset/train/train_human.txt', 'w') as file:
 
 for idx, text in enumerate(test_ai):
     with open('dataset/test/test_ai_{}.txt'.format(idx), 'w') as file:
+        if idx < 1500:
+            with open('dataset/test_tiny/test_ai_{}.txt'.format(idx), 'w') as file_tiny:
+                file_tiny.write(text)
         file.write(text)
 
 for idx, text in enumerate(test_human):
     with open('dataset/test/test_human_{}.txt'.format(idx), 'w') as file:
+        if idx < 1500:
+            with open('dataset/test_tiny/test_human_{}.txt'.format(idx), 'w') as file_tiny:
+                file_tiny.write(text)
         file.write(text)
 

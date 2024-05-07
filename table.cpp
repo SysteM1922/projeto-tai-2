@@ -1,5 +1,4 @@
 #include <unordered_map>
-#include <unordered_set>
 #include <string>
 #include <iostream>
 #include <chrono>
@@ -11,6 +10,7 @@
 #include "progress_bar.h"
 
 #define BUFFER_SIZE 20 * 1024 * 1024
+#define ALPHABET_SIZE 1 << sizeof(char) * 8
 
 using namespace std;
 using namespace std::chrono;
@@ -23,8 +23,6 @@ Table::Table(int newAlpha){
 
 void Table::addSequence(string sequence, char nextChar)
 {
-    
-    total++;
     table[hasher(sequence)][nextChar]++;
 };
 
@@ -33,22 +31,13 @@ int Table::memorySize()
     return sizeof(unordered_map<size_t, unordered_map<char, uint>>) + table.size() * (sizeof(size_t) + sizeof(unordered_map<char, uint>) + sizeof(char) + sizeof(uint));
 };
 
-void Table::calcProbability(string sequence, char nextChar, int &sum, double &prob)
+void Table::calcProbability(string sequence, char nextChar, double &prob)
 {
-    sum = 0;
-    double charValue = 0;
+    uint total = 0;
     for(auto &entry : table[hasher(sequence)]){
-        sum += entry.second;
-        if(entry.first == nextChar){
-            charValue = entry.second;
-        }
+        total += entry.second;
     }
-    prob = (charValue + alpha) / (sum + alpha * alphabetSize);
-};
-
-void Table::addToAlphabet(char c)
-{
-    alphabet.insert(c);
+    prob = (double)(table[hasher(sequence)][nextChar] + alpha) / (total + (alpha * ALPHABET_SIZE));
 };
 
 void Table::clear()
@@ -95,7 +84,6 @@ void read_for_table(FILE *file, Table &table, size_t sequence_size, string label
                 sequence = "";
                 continue;
             }
-            table.addToAlphabet(buffer[i]);
             if (sequence.size() < sequence_size)
             {
                 sequence += buffer[i];
@@ -122,7 +110,6 @@ void read_for_table(FILE *file, Table &table, size_t sequence_size, string label
                 sequence = "";
                 continue;
             }
-            table.addToAlphabet(buffer[i]);
             if (sequence.size() < sequence_size)
             {
                 sequence += buffer[i];
@@ -138,7 +125,6 @@ void read_for_table(FILE *file, Table &table, size_t sequence_size, string label
     progress_bar(100, 100);
     cout << endl;
     free(buffer);
-    table.alphabetSize = table.alphabet.size();
 
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(stop - start);
