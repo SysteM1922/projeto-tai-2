@@ -31,6 +31,9 @@ void Table::addSequence(string sequence, char nextChar)
 
 int Table::memorySize()
 {
+    //return sizeof(unordered_map<size_t, unordered_map<char, uint>>) + table.size() * (sizeof(size_t) + sizeof(unordered_map<char, uint>) + sizeof(char) + sizeof(uint));
+    //return sizeof(google::sparse_hash_map<size_t, google::sparse_hash_map<char, uint>>) + table.size() * (sizeof(size_t) + sizeof(google::sparse_hash_map<char, uint>) + sizeof(char) + sizeof(uint));
+    //return sizeof(ska::flat_hash_map<size_t, ska::flat_hash_map<char, uint>>) + table.size() * (sizeof(size_t) + sizeof(ska::flat_hash_map<char, uint>) + sizeof(char) + sizeof(uint));
     return sizeof(tsl::hopscotch_map<size_t, tsl::hopscotch_map<char, uint>>) + table.size() * (sizeof(size_t) + sizeof(tsl::hopscotch_map<char, uint>) + sizeof(char) + sizeof(uint));
 };
 
@@ -130,7 +133,7 @@ void read_for_table(FILE *file, Table &table, size_t sequence_size, string label
     free(buffer);
 
     auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<milliseconds>(stop - start);
-    cout << "Time taken: " << duration.count() / 1000 << " seconds" << endl;
+    auto duration = duration_cast<nanoseconds>(stop - start);
+    cout << "Time taken: " << duration.count() / 1000 << " nanoseconds" << endl;
 }
 

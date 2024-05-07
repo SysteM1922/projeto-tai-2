@@ -17,8 +17,8 @@ struct Table
 {
     Table(int newAlpha);
     int alpha;
-    //google::sparse_hash_map<size_t, sparse_hash_map<char, uint>> table;
     //unordered_map<size_t, unordered_map<char, uint>> table;
+    //google::sparse_hash_map<size_t, google::sparse_hash_map<char, uint>> table;
     //ska::flat_hash_map<size_t, ska::flat_hash_map<char, uint>> table;
     tsl::hopscotch_map<size_t, tsl::hopscotch_map<char, uint>> table;
 
