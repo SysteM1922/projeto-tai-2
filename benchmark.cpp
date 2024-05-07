@@ -124,7 +124,7 @@ int main(int argc, char *argv[])
          << endl;
 
     cout << "Checking the nature of the files submitted for analysis ..." << endl;
-
+    /*
     char *data;
     int fileSize = 0;
     double human_compression = 0;
@@ -182,12 +182,12 @@ int main(int argc, char *argv[])
     }
     auto stop = high_resolution_clock::now();
     cout << endl;
-
+    */
     human_compression_table.clear();
     chatted_compression_table.clear();
 
-    cout << "Precision: " << (double)hits / (hits + misses) * 100 << "%" << endl;
-    cout << "Time taken: " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds" << endl;
+    //cout << "Precision: " << (double)hits / (hits + misses) * 100 << "%" << endl;
+    //cout << "Time taken: " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds" << endl;
 
     return 0;
 }
