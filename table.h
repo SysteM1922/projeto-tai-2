@@ -2,6 +2,7 @@
 #define TABLE_H
 
 #include <unordered_map>
+#include <unordered_set>
 #include <string>
 #include <fstream>
 
@@ -14,11 +15,15 @@ struct Table
     Table(int newAlpha);
     int alpha;
     int total = 0;
-    unordered_map<string, unordered_map<char, int>> table;
+    int alphabetSize = 0;
+    unordered_map<size_t, unordered_map<char, uint>> table;
+    unordered_set<char> alphabet;
 
     void addSequence(string sequence, char nextChar);
     int memorySize();
-    void calcProbability(string sequence, char nextChar, int &charValue, double &prob);
+    void calcProbability(string sequence, char nextChar, int &sum, double &prob);
+    void addToAlphabet(char c);
+    void clear();
 };
 void progress_bar(int progress, int total);
 void read_for_table(FILE *file, Table &table, size_t sequence_size, string label);

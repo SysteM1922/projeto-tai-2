@@ -1,8 +1,11 @@
 #include <unordered_map>
+#include <unordered_set>
 #include <string>
 #include <iostream>
 #include <chrono>
 #include <fstream>
+#include <functional>
+#include <math.h>
 
 #include "table.h"
 #include "progress_bar.h"
@@ -12,51 +15,45 @@
 using namespace std;
 using namespace std::chrono;
 
+hash <string> hasher;
+
 Table::Table(int newAlpha){
     alpha = newAlpha;
 }
 
 void Table::addSequence(string sequence, char nextChar)
 {
-    if (table.find(sequence) == table.end())
-    {
-        table[sequence] = unordered_map<char, int>();
-    }
-    if (table[sequence].find(nextChar) == table[sequence].end())
-    {
-        table[sequence][nextChar] = 1;
-    }
-    else
-    {
-        table[sequence][nextChar]++;
-    }
+    
+    total++;
+    table[hasher(sequence)][nextChar]++;
 };
 
 int Table::memorySize()
 {
-    int size = 0;
-    for (auto &entry : table)
-    {
-        size += entry.first.size() + sizeof(entry.second);
-        for (auto &sub_entry : entry.second)
-        {
-            size += sizeof(sub_entry.first) + sizeof(sub_entry.second);
-        }
-    }
-    return size;
+    return sizeof(unordered_map<size_t, unordered_map<char, uint>>) + table.size() * (sizeof(size_t) + sizeof(unordered_map<char, uint>) + sizeof(char) + sizeof(uint));
 };
 
-void Table::calcProbability(string sequence, char nextChar, int &charValue, double &prob)
+void Table::calcProbability(string sequence, char nextChar, int &sum, double &prob)
 {
-    double sum = 0;
-    charValue = 0;
-    for(auto &entry : table[sequence]){
+    sum = 0;
+    double charValue = 0;
+    for(auto &entry : table[hasher(sequence)]){
         sum += entry.second;
         if(entry.first == nextChar){
             charValue = entry.second;
         }
     }
-    prob = (charValue + alpha) / (sum + alpha);
+    prob = (charValue + alpha) / (sum + alpha * alphabetSize);
+};
+
+void Table::addToAlphabet(char c)
+{
+    alphabet.insert(c);
+};
+
+void Table::clear()
+{
+    table.clear();
 };
 
 void read_for_table(FILE *file, Table &table, size_t sequence_size, string label)
@@ -72,7 +69,6 @@ void read_for_table(FILE *file, Table &table, size_t sequence_size, string label
         cerr << "Error: file is empty" << endl;
         return;
     }
-    table.total = file_size;
 
     if (file_size > BUFFER_SIZE)
     {
@@ -97,13 +93,12 @@ void read_for_table(FILE *file, Table &table, size_t sequence_size, string label
             if (buffer[i] == '\0')
             {
                 sequence = "";
-                table.total--;
                 continue;
             }
+            table.addToAlphabet(buffer[i]);
             if (sequence.size() < sequence_size)
             {
                 sequence += buffer[i];
-                table.total--;
                 continue;
             }
             table.addSequence(sequence, buffer[i]);
@@ -125,13 +120,12 @@ void read_for_table(FILE *file, Table &table, size_t sequence_size, string label
             if (buffer[i] == '\0')
             {
                 sequence = "";
-                table.total--;
                 continue;
             }
+            table.addToAlphabet(buffer[i]);
             if (sequence.size() < sequence_size)
             {
                 sequence += buffer[i];
-                table.total--;
                 continue;
             }
             table.addSequence(sequence, buffer[i]);
@@ -144,6 +138,7 @@ void read_for_table(FILE *file, Table &table, size_t sequence_size, string label
     progress_bar(100, 100);
     cout << endl;
     free(buffer);
+    table.alphabetSize = table.alphabet.size();
 
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(stop - start);
