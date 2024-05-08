@@ -24,9 +24,6 @@ with open('AI_Human.csv', 'r') as file:
         else:
             human.append(row[0].replace('\n\n', '\n'))
 
-ai = ai[:int(len(ai)*DATASET_SIZE)]
-human = human[:int(len(human)*DATASET_SIZE)]
-
 if os.path.exists('test'):
     shutil.rmtree('test')
 os.mkdir('test')
@@ -71,6 +68,9 @@ else:
 
     test_human = random.sample(human, int(len(train_human)*test_size))
 
+train_ai = train_ai[:int(len(train_ai)*DATASET_SIZE)]
+train_human = train_human[:int(len(train_human)*DATASET_SIZE)]
+
 with open('train/train_ai.txt', 'w') as file:
     for line in train_ai:
         file.write(line + '\0')
@@ -81,14 +81,14 @@ with open('train/train_human.txt', 'w') as file:
 
 for idx, text in enumerate(test_ai):
     with open('test/test_ai_{}.txt'.format(idx), 'w') as file:
-        if idx < 1500:
+        if idx < len(test_ai)*0.1:
             with open('test_tiny/test_ai_{}.txt'.format(idx), 'w') as file_tiny:
                 file_tiny.write(text)
         file.write(text)
 
 for idx, text in enumerate(test_human):
     with open('test/test_human_{}.txt'.format(idx), 'w') as file:
-        if idx < 1500:
+        if idx < len(test_human)*0.1:
             with open('test_tiny/test_human_{}.txt'.format(idx), 'w') as file_tiny:
                 file_tiny.write(text)
         file.write(text)
