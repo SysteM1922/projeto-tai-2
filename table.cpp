@@ -133,7 +133,7 @@ void read_for_table(FILE *file, Table &table, size_t sequence_size, string label
     free(buffer);
 
     auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<nanoseconds>(stop - start);
-    cout << "Time taken: " << duration.count() / 1000 << " nanoseconds" << endl;
+    auto duration = duration_cast<seconds>(stop - start);
+    cout << "Time taken: " << duration.count() << " seconds" << endl;
 }
 

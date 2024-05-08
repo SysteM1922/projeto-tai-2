@@ -2,7 +2,7 @@
 #include <string>
 #include <getopt.h>
 #include <stdio.h>
-#include <math.h>
+#include <cmath>
 #include <filesystem>
 
 #include "table.hpp"
@@ -187,7 +187,7 @@ int main(int argc, char *argv[])
     chatted_compression_table.clear();
 
     cout << "Precision: " << (double)hits / (hits + misses) * 100 << "%" << endl;
-    cout << "Time taken: " << duration_cast<nanoseconds>(stop - start).count() << " nanoseconds" << endl;
+    cout << "Time taken: " << duration_cast<seconds>(stop - start).count() << " seconds" << endl;
 
     return 0;
 }

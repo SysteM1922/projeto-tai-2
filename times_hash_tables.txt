@@ -1,71 +1,71 @@
 hashmaps
 
 - hopscotch_map n 2
-Human: 9098832 nanoseconds 686 KB
-AI: 9504109 nanoseconds 762 KB
-Test: 29386063701 nanoseconds
+Human: 9099 miliseconds 686 KB
+AI: 9504 miliseconds 762 KB
+Test: 29386 miliseconds
 
 - flat_hash_map n 2
-Human: 9933821 nanoseconds 283 KB
-AI: 10135320 nanoseconds 314 KB
-Test: 35010504672 nanoseconds
+Human: 9934 miliseconds 283 KB
+AI: 10135 miliseconds 314 KB
+Test: 35011 miliseconds
 
 - sparse_hash_map n 2
-Human: 20325695 nanoseconds 635 KB
-AI: 26816247 nanoseconds 706 KB
-Test: 500246367387 nanoseconds
+Human: 20326 miliseconds 635 KB
+AI: 26816 miliseconds 706 KB
+Test: 500246 miliseconds
 
 - unordered_map n 2
-Human: 23521959 nanoseconds 434 KB
-AI: 23480374 nanoseconds 482 KB
-Test: 60488422477 nanoseconds
+Human: 23522 miliseconds 434 KB
+AI: 23480 miliseconds 482 KB
+Test: 60488 miliseconds
 
 - hopscotch_map n 3
-Human: 14334392 nanoseconds 9126 KB
-AI: 18281139 nanoseconds 10281 KB
-Test: 240737948690 nanoseconds
+Human: 14334 miliseconds 9126 KB
+AI: 18281 miliseconds 10281 KB
+Test: 240738 miliseconds
 
 - flat_hash_map n 3
-Human: 18729641 nanoseconds 3767 KB
-AI: 23168092 nanoseconds 4244 KB
-Test: 290746469067 nanoseconds
+Human: 18730 miliseconds 3767 KB
+AI: 23168 miliseconds 4244 KB
+Test: 290746 miliseconds
 
 - hopscotch_map n 4
-Human: 22748138 nanoseconds 44393 KB
-AI: 22374149 nanoseconds 48328 KB
-Test: -- nanoseconds
+Human: 22748 miliseconds 44393 KB
+AI: 22374 miliseconds 48328 KB
+Test: -- miliseconds
 
 - flat_hash_map n 4
-Human: 21577504 nanoseconds 18327 KB
-AI: 23168092 nanoseconds 19952 KB
-Test: -- nanoseconds
+Human: 21578 miliseconds 18327 KB
+AI: 23168 miliseconds 19952 KB
+Test: -- miliseconds
 
 - hopscotch_map n 5
-Human: 36839285 nanoseconds 143070 KB
-AI: 34927398 nanoseconds 138636 KB
-Test: -- nanoseconds
+Human: 36839 miliseconds 143070 KB
+AI: 34927 miliseconds 138636 KB
+Test: -- miliseconds
 
 - flat_hash_map n 5
-Human: 38415599 nanoseconds 59065 KB
-AI: 32102208 nanoseconds 57235 KB
-Test: -- nanoseconds
+Human: 38416 miliseconds 59065 KB
+AI: 32102 miliseconds 57235 KB
+Test: -- miliseconds
 
 - hopscotch_map n 6
-Human: 51533756 nanoseconds 350558 KB
-AI: 63647378 nanoseconds 311076 KB
-Test: -- nanoseconds
+Human: 51534 miliseconds 350558 KB
+AI: 63647 miliseconds 311076 KB
+Test: -- miliseconds
 
 - flat_hash_map n 6
-Human: 42553428 nanoseconds 144725 KB
-AI: 43318683 nanoseconds 128425 KB
-Test: -- nanoseconds
+Human: 42553 miliseconds 144725 KB
+AI: 43319 miliseconds 128425 KB
+Test: -- miliseconds
 
 - hopscotch_map n 7
-Human: 69175346 nanoseconds 696143 KB
-AI: 64582900 nanoseconds 586907 KB
-Test: -- nanoseconds
+Human: 69175 miliseconds 696143 KB
+AI: 64583 miliseconds 586907 KB
+Test: -- miliseconds
 
 - flat_hash_map n 7
-Human: 53555122 nanoseconds 287398 KB
-AI: 48973555 nanoseconds 242301 KB
-Test: -- nanoseconds
+Human: 53555 miliseconds 287398 KB
+AI: 48974 miliseconds 242301 KB
+Test: -- miliseconds

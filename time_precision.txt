@@ -1,35 +1,42 @@
 n 1
-4652014 nanoseconds 6 KB
-5003435 nanoseconds 7 KB
+5 seconds 6 KB
+5 seconds 7 KB
 90.4333%
-6537723127 nanoseconds
+7 seconds
 
 n 2
-9709060 nanoseconds 283 KB
-9957658 nanoseconds 314 KB
+8 seconds 283 KB
+10 seconds 314 KB
 95.1667%
-33380148306 nanoseconds
+33 seconds
 
 n 3
-12820523 nanoseconds 3767 KB
-16684272 nanoseconds 4244 KB
+13 seconds 3767 KB
+17 seconds 4244 KB
 97.6667%
-228627855254 nanoseconds
+23 seconds
 
 n 4
-20537072 nanoseconds 18327 KB
-16684272 nanoseconds 19952 KB
+21 seconds 18327 KB
+17 seconds 19952 KB
 98.2667%
-1034228921132 nanoseconds
+1034 seconds
 
 n 5
-31181509 nanoseconds 59065 KB
-31716534 nanoseconds 57235 KB
+31 seconds 59065 KB
+32 seconds 57235 KB
 99.0333%
-3644063051174 nanoseconds
+3644 seconds
 
 n 6
-47688321 nanoseconds 144725 KB
-46044082 nanoseconds 128425 KB
+48 seconds 144725 KB
+46 seconds 128425 KB
 99.2667%
-6126732314254 nanoseconds
+6127 seconds
+
+n 7
+73 seconds 287398 KB
+59 seconds 242301 KB
+
+
+n 8
