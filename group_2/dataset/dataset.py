@@ -24,8 +24,8 @@ with open('AI_Human.csv', 'r') as file:
         else:
             human.append(row[0].replace('\n\n', '\n'))
 
-ai = ai[:len(ai)*DATASET_SIZE]
-human = human[:len(human)*DATASET_SIZE]
+ai = ai[:int(len(ai)*DATASET_SIZE)]
+human = human[:int(len(human)*DATASET_SIZE)]
 
 if os.path.exists('test'):
     shutil.rmtree('test')
