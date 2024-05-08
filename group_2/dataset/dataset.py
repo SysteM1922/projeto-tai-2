@@ -3,6 +3,8 @@ import shutil
 import os
 import random
 
+DATASET_SIZE = 1
+
 human = []
 ai = []
 
@@ -21,6 +23,9 @@ with open('AI_Human.csv', 'r') as file:
             ai.append(row[0].replace('\n\n', '\n'))
         else:
             human.append(row[0].replace('\n\n', '\n'))
+
+ai = ai[:len(ai)*DATASET_SIZE]
+human = human[:len(human)*DATASET_SIZE]
 
 if os.path.exists('test'):
     shutil.rmtree('test')
