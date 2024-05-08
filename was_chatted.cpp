@@ -136,7 +136,6 @@ int main(int argc, char *argv[])
     free(data);
     human_compression_table.clear();
     chatted_compression_table.clear();
-    cout << human_compression << " " << chatted_compression << endl;
 
     if (human_compression < chatted_compression)
     {
