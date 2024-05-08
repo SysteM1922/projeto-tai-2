@@ -33,7 +33,10 @@
 
 # Dataset Files
 AI_Human.csv
-dataset/
+dataset/test_tiny/
+dataset/test/
+dataset/train/
+AI_Human.csv
 
 # Table files
 human_compression_table.bin
