@@ -93,7 +93,7 @@ for text in test_ai:
         continue
 
     with open('test/test_ai_{}.txt'.format(fileIdx), 'w') as file:
-        if fileIdx < len(test_ai)//TEST_SIZE*0.1:
+        if fileIdx < len(test_ai)*0.1:
             with open('test_tiny/test_ai_{}.txt'.format(fileIdx), 'w') as file_tiny:
                 file_tiny.write(full_text)
         file.write(full_text)
@@ -117,7 +117,7 @@ for text in test_human:
         continue
 
     with open('test/test_human_{}.txt'.format(fileIdx), 'w') as file:
-        if fileIdx < len(test_human)//TEST_SIZE*0.1:
+        if fileIdx < len(test_human)*0.1:
             with open('test_tiny/test_human_{}.txt'.format(fileIdx), 'w') as file_tiny:
                 file_tiny.write(full_text)
         file.write(full_text)
