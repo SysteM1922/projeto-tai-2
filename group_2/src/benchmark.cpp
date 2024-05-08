@@ -53,7 +53,7 @@ double compress_from_table(Table table, size_t sequence_size, char *data, int fi
         }
         sequence[sequence_size - 1] = data[i];
     }
-    
+
     return total;
 };
 

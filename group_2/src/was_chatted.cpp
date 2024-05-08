@@ -55,7 +55,6 @@ double compress_from_table(Table table, size_t sequence_size, char *data, int fi
     return total;
 };
 
-
 int main(int argc, char *argv[])
 {
     size_t sequence_size = 1;
@@ -204,11 +203,12 @@ int main(int argc, char *argv[])
             human_compression = compress_from_table(human_compression_table, sequence_size, data, fileSize);
             chatted_compression = compress_from_table(chatted_compression_table, sequence_size, data, fileSize);
 
-            if (human_compression > chatted_compression) {
-                // print file name without path
+            if (human_compression > chatted_compression)
+            {
                 cout << "    1\t| " << entry.path().filename().c_str() << endl;
             }
-            else {
+            else
+            {
                 cout << "    0\t| " << entry.path().filename().c_str() << endl;
             }
             free(data);
@@ -221,10 +221,13 @@ int main(int argc, char *argv[])
     {
         bool active = true;
         string file_name;
-        while (active) {
-            cout << endl << "Enter the file name to be analyzed (or 'exit' to quit): ";
+        while (active)
+        {
+            cout << endl
+                 << "Enter the file name to be analyzed (or 'exit' to quit): ";
             cin >> file_name;
-            if (file_name == "exit") {
+            if (file_name == "exit")
+            {
                 active = false;
                 continue;
             }
