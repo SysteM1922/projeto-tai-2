@@ -3,7 +3,8 @@ import shutil
 import os
 import random
 
-DATASET_SIZE = 1
+DATASET_SIZE = 1    # float between 0 and 1
+TEST_SIZE = 1       # integer never less than 1
 
 human = []
 ai = []
@@ -79,17 +80,52 @@ with open('train/train_human.txt', 'w') as file:
     for line in train_human:
         file.write(line + '\0')
 
-for idx, text in enumerate(test_ai):
-    with open('test/test_ai_{}.txt'.format(idx), 'w') as file:
-        if idx < len(test_ai)*0.1:
-            with open('test_tiny/test_ai_{}.txt'.format(idx), 'w') as file_tiny:
-                file_tiny.write(text)
-        file.write(text)
 
-for idx, text in enumerate(test_human):
-    with open('test/test_human_{}.txt'.format(idx), 'w') as file:
-        if idx < len(test_human)*0.1:
-            with open('test_tiny/test_human_{}.txt'.format(idx), 'w') as file_tiny:
-                file_tiny.write(text)
-        file.write(text)
+control = 0
+full_text = ""
+fileIdx = 0
+mean_size = 0
+for text in test_ai:
+
+    control += 1
+    full_text += text
+    if control != TEST_SIZE:
+        continue
+
+    with open('test/test_ai_{}.txt'.format(fileIdx), 'w') as file:
+        if fileIdx < len(test_ai)//TEST_SIZE*0.1:
+            with open('test_tiny/test_ai_{}.txt'.format(fileIdx), 'w') as file_tiny:
+                file_tiny.write(full_text)
+        file.write(full_text)
+    
+    control = 0
+    fileIdx += 1
+    mean_size += len(full_text)
+    full_text = ""
+
+print("Mean size of AI test files: {:.3f} KB".format(mean_size/fileIdx/1000))
+
+control = 0
+full_text = ""
+fileIdx = 0
+mean_size = 0
+for text in test_human:
+
+    control += 1
+    full_text += text
+    if control != TEST_SIZE:
+        continue
+
+    with open('test/test_human_{}.txt'.format(fileIdx), 'w') as file:
+        if fileIdx < len(test_human)//TEST_SIZE*0.1:
+            with open('test_tiny/test_human_{}.txt'.format(fileIdx), 'w') as file_tiny:
+                file_tiny.write(full_text)
+        file.write(full_text)
+    
+    control = 0
+    fileIdx += 1
+    mean_size += len(full_text)
+    full_text = ""
+
+print("Mean size of Human test files: {:.3f} KB".format(mean_size/fileIdx/1000))
 
