@@ -33,9 +33,9 @@
 
 # Dataset Files
 AI_Human.csv
-dataset/test_tiny/
-dataset/test/
-dataset/train/
+group_2/dataset/test_tiny/
+group_2/dataset/test/
+group_2/dataset/train/
 AI_Human.csv
 
 # Table files
