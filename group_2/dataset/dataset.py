@@ -52,7 +52,7 @@ if len(human) < len(ai):
         train_ai.append(ai.pop())
         ai_character_count += len(train_ai[-1])
 
-    test_ai = random.sample(ai, int(len(train_ai)*test_size))
+    test_ai = random.sample(ai, int(len(human)*test_size))
 
 else:
     test_ai = random.sample(ai, int(len(ai)*test_size))
@@ -67,7 +67,7 @@ else:
         train_human.append(human.pop())
         human_character_count += len(train_human[-1])
 
-    test_human = random.sample(human, int(len(train_human)*test_size))
+    test_human = random.sample(human, int(len(ai)*test_size))
 
 train_ai = train_ai[:int(len(train_ai)*DATASET_SIZE)]
 train_human = train_human[:int(len(train_human)*DATASET_SIZE)]

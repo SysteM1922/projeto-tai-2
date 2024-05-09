@@ -13,14 +13,14 @@
 #include "progress_bar.hpp"
 
 #define BUFFER_SIZE 20 * 1024 * 1024
-#define ALPHABET_SIZE 1 << sizeof(char) * 8
+#define ALPHABET_SIZE 256
 
 using namespace std;
 using namespace std::chrono;
 
 hash<string> hasher;
 
-Table::Table(int newAlpha)
+Table::Table(double newAlpha)
 {
     alpha = newAlpha;
 }

@@ -59,11 +59,12 @@ double compress_from_table(Table table, size_t sequence_size, char *data, int fi
 
 int main(int argc, char *argv[])
 {
+    
     size_t sequence_size = 1;
     FILE *humman_collection = NULL;
     FILE *chatted_collection = NULL;
     string dir = "";
-    int alpha = 0;
+    double alpha = 0;
 
     if (argc < 11)
     {
@@ -77,7 +78,7 @@ int main(int argc, char *argv[])
         switch (opt)
         {
         case 'a':
-            alpha = atoi(optarg);
+            alpha = atof(optarg);
             break;
         case 'n':
             sequence_size = atoi(optarg);

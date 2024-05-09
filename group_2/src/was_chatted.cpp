@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
     FILE *humman_collection = NULL;
     FILE *chatted_collection = NULL;
     FILE *file_to_be_analyzed = NULL;
-    int alpha = 0;
+    double alpha = 0;
     bool interactive = false;
     string dir = "";
 
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
         switch (opt)
         {
         case 'a':
-            alpha = atoi(optarg);
+            alpha = atof(optarg);
             break;
         case 'n':
             sequence_size = atoi(optarg);

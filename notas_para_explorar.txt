@@ -1,8 +1,0 @@
-AI Generated vs Human Written Text
-
-- Test different hash table implementations
-- Explore different sizes of character sequences
-- Consider white spaces and punctuation?
-- Consider removal of stop words? (Maybe not, because it's a compression strategy and not a language model)
-- Use hash to store the sequences and the next character
-
